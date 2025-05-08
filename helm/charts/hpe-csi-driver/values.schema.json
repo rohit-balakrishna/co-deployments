@@ -10,7 +10,8 @@
                 "primera": false,
                 "alletra6000": false,
                 "alletra9000": false,
-                "alletraStorageMP": false
+                "alletraStorageMP": false,
+					 "b10000-NFS": false,
             },
             "disableNodeConformance": false,
             "disableNodeConfiguration": false,
@@ -77,14 +78,16 @@
                     "primera": false,
                     "alletra6000": false,
                     "alletra9000": false,
-                    "alletraStorageMP": false
+                    "alletraStorageMP": false,
+					 	  "b10000-NFS": false,
                 },
             "required": [
                 "nimble",
                 "primera",
                 "alletra6000",
                 "alletra9000",
-                "alletraStorageMP"
+                "alletraStorageMP",
+					 "b10000-NFS"
             ],
             "properties": {
                 "nimble": {
@@ -114,6 +117,12 @@
                 "alletraStorageMP": {
                     "$id": "#/properties/disable/properties/alletraStorageMP",
                     "title": "HPE Alletra Storage MP B10000",
+                    "type": "boolean",
+                    "default": false
+                },
+                "b10000-NFS": {
+                    "$id": "#/properties/disable/properties/b10000-NFS",
+                    "title": "HPE Alletra Storage MP B10000 File",
                     "type": "boolean",
                     "default": false
                 }

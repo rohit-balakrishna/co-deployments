@@ -9,6 +9,7 @@ disable:
   alletra6000: false
   alletra9000: false
   alletraStorageMP: false
+  b10000-NFS: false
 
 # For controlling automatic iscsi/multipath package installation
 disableNodeConformance: false
@@ -109,10 +110,10 @@ node:
 
 # Release images
 images:
-  csiNodeDriver: quay.io/hpestorage/csi-driver:v2.5.2
-  csiControllerDriver: quay.io/hpestorage/csi-driver:v2.5.2
-  nimbleCSP: quay.io/hpestorage/alletra-6000-and-nimble-csp:v2.5.2
-  primera3parCSP: quay.io/hpestorage/alletra-9000-primera-and-3par-csp:v2.5.2
+  csiNodeDriver: quay.io/hpestorage/csi-driver:v3.0.0-alpha
+  csiControllerDriver: quay.io/hpestorage/csi-driver:v3.0.0-alpha
+  nimbleCSP: quay.io/hpestorage/alletra-6000-and-nimble-csp:v3.0.0-alpha
+  primera3parCSP: quay.io/hpestorage/alletra-9000-primera-and-3par-csp:v3.0.0-alpha
   nfsProvisioner: quay.io/hpestorage/nfs-provisioner:v3.0.6
   csiExtensions: quay.io/hpestorage/csi-extensions:v1.2.8
   csiVolumeGroupProvisioner: quay.io/hpestorage/volume-group-provisioner:v1.0.7
