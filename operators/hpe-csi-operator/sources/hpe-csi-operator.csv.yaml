@@ -140,9 +140,9 @@ spec:
             path: disable.alletraStorageMP
             x-descriptors:
               - "urn:alm:descriptor:com.tectonic.ui:checkbox"
-          - displayName: Alletra Storage MP B10000 NFS
-            description: "Disable Alletra Storage MP B10000 NFS"
-            path: disable.b10000file
+          - displayName: Alletra Storage MP B10000 File Service
+            description: "Disable Alletra Storage MP B10000 File Service"
+            path: disable.b10000FileService
             x-descriptors:
               - "urn:alm:descriptor:com.tectonic.ui:checkbox"
           - displayName: Disable Node Conformance
@@ -282,9 +282,9 @@ spec:
             path: images.primera3parCSP
             x-descriptors:
               - "urn:alm:descriptor:com.tectonic.ui:text"
-          - displayName: Alletra Storage MP B10000 NFS Image
-            description: The HPE Alletra Storage MP B10000 NFS Container Storage Provider container image
-            path: images.b10000fileCSP
+          - displayName: Alletra Storage MP B10000 File Service Image
+            description: The HPE Alletra Storage MP B10000 File Service Container Storage Provider container image
+            path: images.b10000FileServiceCSP
             x-descriptors:
               - "urn:alm:descriptor:com.tectonic.ui:text"
           - displayName: NFS Server Provisioner Image
