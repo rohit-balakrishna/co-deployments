@@ -408,7 +408,7 @@
                 },
                 "primera3parCSP": {
                     "$id": "#/properties/images/properties/primera3parCSP",
-                    "title": "3PAR, Primera, Alletra 9000 and Alletra Storage MP B10000 CSP",
+                    "title": "3PAR, Primera, Alletra 9000 and Alletra Storage MP B10000 Block Storage CSP",
                     "type": "string"
                 },
                 "b10000FileServiceCSP": {

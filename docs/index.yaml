@@ -248,9 +248,9 @@ entries:
         - url: https://artifacthub.io/packages/helm/hpe-storage/hpe-array-exporter
     apiVersion: v1
     appVersion: 3.0.0-beta
-    created: "2025-05-29T14:09:51.113884-07:00"
+    created: "2025-05-29T20:22:19.135982-07:00"
     description: A Helm chart for installing the HPE CSI Driver for Kubernetes
-    digest: 424e8d149c0d1c4789ff4e2a8c23dcdc676f1da011eb6831915ace3941fbd1aa
+    digest: 2f43596214c27ea19d9cb120b07fb0a79fb65cf9e05cd803a0db394b5e9d6e01
     home: https://hpe.com/storage/containers
     icon: https://raw.githubusercontent.com/hpe-storage/co-deployments/master/docs/assets/hpedev.png
     keywords:
@@ -1676,4 +1676,4 @@ entries:
     urls:
     - hpe-greenlake-file-csi-driver-1.0.0-beta.tgz
     version: 1.0.0-beta
-generated: "2025-05-29T14:09:51.113071-07:00"
+generated: "2025-05-29T20:22:19.135206-07:00"
