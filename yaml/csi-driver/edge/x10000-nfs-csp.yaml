@@ -33,10 +33,11 @@ spec:
         app: alletrastoragemp-x10000-nfs-csp
     spec:
       serviceAccountName: hpe-csp-sa
+      hostNetwork: true
       priorityClassName: system-cluster-critical
       containers:
         - name: alletrastoragemp-x10000-nfs-csp
-          image: "quay.io/balakroh/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.0.0-beta-2410"
+          image: "quay.io/balakroh/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.0.0-beta-0511"
           resources:
             limits:
               cpu: 2000m

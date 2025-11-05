@@ -38,6 +38,7 @@ spec:
         {{- end }}
     spec:
       serviceAccountName: hpe-csp-sa
+      hostNetwork: true
       priorityClassName: system-cluster-critical
       containers:
         - name: alletrastoragemp-x10000-nfs-csp
