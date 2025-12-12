@@ -111,12 +111,12 @@ node:
 
 # Release images
 images:
-  csiNodeDriver: quay.io/balakroh/hpestorage/csi-driver:v3.2.0-beta-1811
-  csiControllerDriver: quay.io/balakroh/hpestorage/csi-driver:v3.2.0-beta-1811
+  csiNodeDriver: quay.io/balakroh/hpestorage/csi-driver:v3.2.0-beta-1212
+  csiControllerDriver: quay.io/balakroh/hpestorage/csi-driver:v3.2.0-beta-1212
   nimbleCSP: quay.io/hpestorage/alletra-6000-and-nimble-csp:v3.0.0
   primera3parCSP: quay.io/hpestorage/alletra-9000-primera-and-3par-csp:v3.0.1
   b10000FileServiceCSP: quay.io/hpestorage/alletrastoragemp-b10000-nfs-csp:v1.0.0
-  x10000FileServiceCSP: quay.io/balakroh/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.0.0-beta-1811
+  x10000FileServiceCSP: quay.io/balakroh/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.0.0-beta-1212
   nfsProvisioner: quay.io/hpestorage/nfs-provisioner:v3.0.8
   csiExtensions: quay.io/hpestorage/csi-extensions:v1.2.9
   csiVolumeGroupProvisioner: quay.io/hpestorage/volume-group-provisioner:v1.0.8
