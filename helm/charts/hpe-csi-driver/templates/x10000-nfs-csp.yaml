@@ -54,4 +54,39 @@ spec:
         - name: log-dir
           hostPath:
             path: /var/log
+
+---
+# ClusterRole to allow creating and managing Jobs for file share cloning across all namespaces
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: hpe-csp-job-manager
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create", "get", "list", "watch", "delete"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["persistentvolumeclaims"]
+  verbs: ["get", "update", "patch"]
+
+---
+# ClusterRoleBinding to grant the hpe-csp-sa service account job management permissions cluster-wide
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hpe-csp-job-manager-binding
+subjects:
+- kind: ServiceAccount
+  name: hpe-csp-sa
+  namespace: hpe-storage
+roleRef:
+  kind: ClusterRole
+  name: hpe-csp-job-manager
+  apiGroup: rbac.authorization.k8s.io
 {{- end }}
