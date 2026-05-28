@@ -10,7 +10,7 @@ metadata:
   name: hpe-csi-controller
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.controller.replicas | default 1 }}
   selector:
     matchLabels:
       app: hpe-csi-controller
@@ -27,8 +27,10 @@ spec:
     spec:
       serviceAccountName: hpe-csi-controller-sa
       priorityClassName: system-cluster-critical
+      {{- if .Values.controller.hostNetwork }}
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
       dnsConfig:
         options:
           - name: ndots
@@ -46,6 +48,10 @@ spec:
             - "--worker-threads=16"
             - "--feature-gates=Topology=true"
             - "--immediate-topology=false"
+            {{- if .Values.controller.leaderElection.enabled }}
+            - "--leader-election=true"
+            - "--leader-election-namespace={{ .Release.Namespace }}"
+            {{- end }}
           env:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
@@ -61,6 +67,10 @@ spec:
             - "--v=5"
             - "--csi-address=$(ADDRESS)"
             - "--timeout=180s"
+            {{- if .Values.controller.leaderElection.enabled }}
+            - "--leader-election=true"
+            - "--leader-election-namespace={{ .Release.Namespace }}"
+            {{- end }}
           env:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
@@ -75,6 +85,10 @@ spec:
           args:
             - "--v=5"
             - "--csi-address=$(ADDRESS)"
+            {{- if .Values.controller.leaderElection.enabled }}
+            - "--leader-election=true"
+            - "--leader-election-namespace={{ .Release.Namespace }}"
+            {{- end }}
           env:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
@@ -89,6 +103,10 @@ spec:
           args:
             - "--csi-address=$(ADDRESS)"
             - "--v=5"
+            {{- if .Values.controller.leaderElection.enabled }}
+            - "--leader-election=true"
+            - "--leader-election-namespace={{ .Release.Namespace }}"
+            {{- end }}
           env:
             - name: ADDRESS
               value: /var/lib/csi/sockets/pluginproxy/csi.sock
@@ -211,7 +229,19 @@ spec:
       tolerations:
 {{ toYaml .Values.controller.tolerations | indent 8 }}
       {{- end }}
-      {{- if .Values.controller.affinity }}
+      {{- if or .Values.controller.affinity (gt (int .Values.controller.replicas) 1) }}
       affinity:
+        {{- if gt (int .Values.controller.replicas) 1 }}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: hpe-csi-controller
+              topologyKey: kubernetes.io/hostname
+        {{- end }}
+        {{- if .Values.controller.affinity }}
 {{ toYaml .Values.controller.affinity | indent 8 }}
+        {{- end }}
       {{- end }}

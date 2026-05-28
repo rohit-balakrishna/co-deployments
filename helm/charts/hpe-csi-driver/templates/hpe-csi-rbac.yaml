@@ -208,13 +208,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-# Resizer must be able to work with end point in current namespace
-# if (and only if) leadership election is enabled
+# Leader election RBAC for all CSI sidecars (provisioner, attacher, snapshotter, resizer)
+# Required when controller.leaderElection.enabled=true for multi-replica deployments
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   namespace: {{ .Release.Namespace }}
-  name: hpe-external-resizer-cfg
+  name: hpe-csi-leader-election
 rules:
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
@@ -224,7 +224,7 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: hpe-csi-resizer-role-cfg
+  name: hpe-csi-leader-election-binding
   namespace: {{ .Release.Namespace }}
 subjects:
   - kind: ServiceAccount
@@ -232,7 +232,7 @@ subjects:
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
-  name: hpe-external-resizer-cfg
+  name: hpe-csi-leader-election
   apiGroup: rbac.authorization.k8s.io
 
 ---

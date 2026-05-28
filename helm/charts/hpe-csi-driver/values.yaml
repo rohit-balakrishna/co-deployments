@@ -48,6 +48,24 @@ kubeletRootDir: "/var/lib/kubelet"
 
 controller:
 
+  # Number of controller replicas for high availability
+  # Requires leaderElection.enabled=true when replicas > 1
+  replicas: 1
+
+  # Leader election ensures only one sidecar instance processes requests at a time
+  # Required for multi-replica deployments to prevent conflicts
+  leaderElection:
+    enabled: true
+    # Lease duration in seconds
+    leaseDuration: 15
+    # Renew deadline in seconds
+    renewDeadline: 10
+    # Retry period in seconds
+    retryPeriod: 5
+
+  # Enable hostNetwork for the controller pod (may conflict with multi-replica on same node)
+  hostNetwork: true
+
   # These values map directly to yaml in the deployment spec, see the kubernetes docs for info
   labels: {}
 
@@ -68,6 +86,16 @@ controller:
       memory: 128Mi
 
 csp:
+
+  # Number of CSP replicas for high availability (requires sessionAffinity enabled)
+  replicas: 1
+
+  # Session affinity ensures requests from the same CSI driver pod go to the same CSP pod
+  # This is required when running multiple CSP replicas to maintain session state
+  sessionAffinity:
+    enabled: true
+    # Timeout in seconds for session stickiness (default: 3 hours to match array session TTL)
+    timeoutSeconds: 10800
 
   # These values map directly to yaml in the deployment spec, see the kubernetes docs for info
   labels: {}
