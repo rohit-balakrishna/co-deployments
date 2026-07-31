@@ -2161,23 +2161,6 @@ spec:
                       type: object
                     type: array
                 type: object
-            required:
-            - disable
-            - disableNodeConformance
-            - disableNodeConfiguration
-            - disableNodeGetVolumeStats
-            - disableNodeMonitor
-            - disableHostDeletion
-            - maxVolumesPerNode
-            - disablePreInstallHooks
-            - imagePullPolicy
-            - images
-            - iscsi
-            - kubeletRootDir
-            - logLevel
-            - csp
-            - controller
-            - node
             type: object
           status:
             description: HpecsidriverStatus defines the observed state of HPECSIDriver
