@@ -118,9 +118,9 @@ spec:
             - name: CHAP_SECRET_NAMESPACE
               value: {{ .Release.Namespace }}
             {{- end }}
-            {{- if or .Values.goDebug .Values.goMemLimitPercent }}
-            {{- include "hpe-csi-driver.goRuntimeEnv" (dict "root" $ "resources" .Values.controller.resources) | nindent 12 }}
-            {{- end }}
+            # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
+            - name: GOMEMLIMIT
+              value: "912680550"
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
           volumeMounts:
             - name: socket-dir

@@ -80,10 +80,8 @@ spec:
             - name: DISABLE_NODE_MONITOR
               value: "true"
             {{- end }}
-            {{- if .Values.multipathUxsockTimeout }}
             - name: MULTIPATH_UXSOCK_TIMEOUT
-              value: "{{ .Values.multipathUxsockTimeout }}"
-            {{- end }}
+              value: "300000"
             - name: LOG_LEVEL
               value: {{ .Values.logLevel }}
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
@@ -178,9 +176,9 @@ spec:
             - name: MAX_HOSTNAME_LEN
               value: "{{ .Values.maxHostnameLength }}"
             {{- end }}
-            {{- if or .Values.goDebug .Values.goMemLimitPercent }}
-            {{- include "hpe-csi-driver.goRuntimeEnv" (dict "root" $ "resources" .Values.node.resources) | nindent 12 }}
-            {{- end }}
+            # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
+            - name: GOMEMLIMIT
+              value: "912680550"
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
           securityContext:
             privileged: true
