@@ -106,6 +106,14 @@ spec:
             # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
             - name: GOMEMLIMIT
               value: "912680550"
+            {{- if gt (int .Values.maxVolumesPerNode) 253 }}
+            # When a node may attach more than 253 volumes, start auto-assigned VLUN IDs
+            # above the reserved SES LUN (254) so FC/iSCSI VLUN IDs do not collide (CON-4873).
+            - name: FC_AUTO_LUN_START_ID
+              value: "255"
+            - name: ISCSI_AUTO_LUN_START_ID
+              value: "255"
+            {{- end }}
           ports:
             - containerPort: 8080
           volumeMounts:

@@ -66,7 +66,7 @@ The following table lists the configurable parameters of the chart and their def
 | node.tolerations          | Node taints to tolerate for the HPE CSI Driver node Pods.                                          | []               |
 | node.resources            | A resource block with requests and limits for node containers.                                     | From [values.yaml](https://github.com/hpe-storage/co-deployments/blob/master/helm/values/csi-driver) |
 | images                    | Key/value pairs of HPE CSI Driver runtime images.                                                  | From [values.yaml](https://github.com/hpe-storage/co-deployments/blob/master/helm/values/csi-driver) |
-| maxVolumesPerNode         | Maximum number of volumes the CSI controller will publish to a node.`**`                           | 100 |
+| maxVolumesPerNode         | Maximum number of volumes the CSI controller will publish to a node.`**`                           | 200 |
 
 `*` = Disabling node conformance and configuration may prevent the CSI driver from functioning properly. See the [manual node configuration](https://scod.hpedev.io/csi_driver/operations.html#manual_node_configuration) section on SCOD to understand the consequences.
 `**` = The default value is the current well tested upper limit. Do not increase the default value unless the use case has been well tested.
