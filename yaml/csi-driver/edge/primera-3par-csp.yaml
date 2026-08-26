@@ -86,9 +86,9 @@ spec:
               value: "20"
             - name: LOG_LEVEL
               value: info
-            # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
+            # GOMEMLIMIT set to 850MiB (~83% of this container's 1Gi memory limit) to run the Go GC before the hard limit (ESC-17696).
             - name: GOMEMLIMIT
-              value: "912680550"
+              value: "850MiB"
           ports:
             - containerPort: 8080
           volumeMounts:

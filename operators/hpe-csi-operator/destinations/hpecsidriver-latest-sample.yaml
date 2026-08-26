@@ -64,7 +64,7 @@ spec:
     chapSecretName: ""
   kubeletRootDir: /var/lib/kubelet
   logLevel: info
-  maxVolumesPerNode: 200
+  maxVolumesPerNode: 250
   node:
     affinity: {}
     labels: {}

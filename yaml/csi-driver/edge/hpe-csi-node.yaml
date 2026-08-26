@@ -132,12 +132,12 @@ spec:
                 fieldRef:
                   fieldPath: spec.nodeName
             - name: MAX_VOLUMES_PER_NODE
-              value: "200"
+              value: "250"
             - name: KUBELET_ROOT_DIR
               value: /var/lib/kubelet
-            # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
+            # GOMEMLIMIT set to 850MiB (~83% of this container's 1Gi memory limit) to run the Go GC before the hard limit (ESC-17696).
             - name: GOMEMLIMIT
-              value: "912680550"
+              value: "850MiB"
           imagePullPolicy: "IfNotPresent"
           securityContext:
             privileged: true

@@ -134,9 +134,9 @@ spec:
               value: info
             - name: RUNTIME_NFS_IMAGE
               value: quay.io/hpestorage/nfs-provisioner:v3.0.10
-            # GOMEMLIMIT set to 85% of this container's memory limit (1Gi) to run the Go GC before the hard limit (ESC-17696).
+            # GOMEMLIMIT set to 850MiB (~83% of this container's 1Gi memory limit) to run the Go GC before the hard limit (ESC-17696).
             - name: GOMEMLIMIT
-              value: "912680550"
+              value: "850MiB"
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - name: socket-dir
