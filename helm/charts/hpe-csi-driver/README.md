@@ -1,6 +1,6 @@
 # HPE CSI Driver for Kubernetes Helm chart
 
-The [HPE CSI Driver for Kubernetes](https://scod.hpedev.io/csi_driver/index.html) leverages Hewlett Packard Enterprise primary storage platforms to provide scalable, persistent block and file storage for stateful and ephemeral applications. Currently supported storage platforms include HPE Alletra Storage MP B10000, HPE Alletra Storage MP X10000, HPE Alletra 5000/6000/9000, HPE Nimble Storage, HPE Primera and HPE 3PAR.
+The [HPE CSI Driver for Kubernetes](https://scod.hpedev.io/csi_driver/index.html) leverages Hewlett Packard Enterprise primary storage platforms to provide scalable, persistent block and file storage for stateful and ephemeral applications. Currently supported storage platforms include HPE Alletra Storage MP B10000, Alletra Storage MP X10000, Alletra 5000/6000/9000, Nimble Storage, Primera and 3PAR.
 
 ## Release highlights
 
@@ -18,12 +18,12 @@ The HPE CSI Driver for Kubernetes Helm chart is the primary delivery vehicle for
 
 Refer to [Compatibility & Support](https://scod.hpedev.io/csi_driver/index.html#compatibility_and_support) for currently supported versions of Kubernetes and compute node operating systems.
 
-Depending on which [Container Storage Provider](https://scod.hpedev.io/container_storage_provider/index.html) (CSP) is being used, other prerequisites and requirements may apply, such as storage platform OS and features.
+Depending on which [Container Storage Provider](https://scod.hpedev.io/csi_driver/container_storage_provider/index.html) (CSP) is being used, other prerequisites and requirements may apply, such as storage platform OS and features.
 
-- [HPE Alletra Storage MP B10000, Alletra 9000, Primera and 3PAR](https://scod.hpedev.io/container_storage_provider/hpe_alletra_storage_mp_b10000/index.html)
-- [HPE Alletra Storage MP B10000 File Service](https://scod.hpedev.io/container_storage_provider/hpe_alletra_storage_mp_b10000_file_service/index.html)
+- [HPE Alletra Storage MP B10000, Alletra 9000, Primera and 3PAR](https://scod.hpedev.io/csi_driver/container_storage_provider/hpe_alletra_storage_mp_b10000/index.html)
+- [HPE Alletra Storage MP B10000 File Service](https://scod.hpedev.io/csi_driver/container_storage_provider/hpe_alletra_storage_mp_b10000_file_service/index.html)
 - [HPE Alletra Storage MP X10000](https://scod.hpedev.io/csi_driver/container_storage_provider/hpe_alletra_storage_mp_x10000/index.html)
-- [HPE Alletra 5000/6000 and Nimble Storage](https://scod.hpedev.io/container_storage_provider/hpe_alletra_6000/index.html)
+- [HPE Alletra 5000/6000 and Nimble Storage](https://scod.hpedev.io/csi_driver/container_storage_provider/hpe_alletra_6000/index.html)
 
 ## Configuration and installation
 
@@ -69,7 +69,7 @@ The following table lists the configurable parameters of the chart and their def
 | maxVolumesPerNode         | Maximum number of volumes the CSI controller will publish to a node.`**`                           | 250 |
 
 `*` = Disabling node conformance and configuration may prevent the CSI driver from functioning properly. See the [manual node configuration](https://scod.hpedev.io/csi_driver/operations.html#manual_node_configuration) section on SCOD to understand the consequences.
-`**` = The default value is the current well tested upper limit. Do not increase the default value unless the use case has been well tested.
+<br />`**` = The default value is the current well tested upper limit. Do not increase the default value unless the use case has been well tested and is within the [Known Limitations](https://scod.hpedev.io/csi_driver/index.html#known_limitations) for how many paths that are allowed.
 
 It's recommended to create a [values.yaml](https://github.com/hpe-storage/co-deployments/blob/master/helm/values/csi-driver) file from the corresponding release of the chart and edit it to fit the environment the chart is being deployed to. Download and edit [a sample file](https://github.com/hpe-storage/co-deployments/blob/master/helm/values/csi-driver).
 
@@ -97,6 +97,7 @@ helm install --create-namespace -n hpe-storage my-hpe-csi-driver hpe-storage/hpe
 ### Upgrading the chart
 
 Due to the [helm limitation](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/#some-caveats-and-explanations) to not support upgrade of CRDs between different chart versions, helm chart upgrade is not supported.
+
 Our recommendation is to uninstall the existing chart and install the chart with the desired version. CRDs will be preserved between uninstall and install.
 
 #### Upgrading from any version below 3.1.0
