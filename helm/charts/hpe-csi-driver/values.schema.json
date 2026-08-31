@@ -277,6 +277,13 @@
                 "type": "object",
                 "default": {}
             },
+            "seLinuxOptions": {
+                "$id": "#/properties/csp/properties/seLinuxOptions",
+                "title": "SELinux options for the CSP container (OpenShift only).",
+                "description": "OpenShift only: set type to spc_t so the CSP container can write logs to the host-mounted /var/log (CON-3303). Leave empty on vanilla Kubernetes.",
+                "type": "object",
+                "default": {}
+            },
 	    "resources": {
                 "$id": "#/properties/csp/properties/resources",
                 "type": "object",

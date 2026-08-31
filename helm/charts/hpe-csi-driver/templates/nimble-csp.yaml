@@ -62,6 +62,12 @@ spec:
       containers:
         - name: nimble-csp
           image: {{ .Values.images.nimbleCSP | quote }}
+          {{- if .Values.csp.seLinuxOptions }}
+          # OpenShift only: lets the CSP write logs to host-mounted /var/log (CON-3303)
+          securityContext:
+            seLinuxOptions:
+{{ toYaml .Values.csp.seLinuxOptions | indent 14 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.csp.resources | nindent 12 }}
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
