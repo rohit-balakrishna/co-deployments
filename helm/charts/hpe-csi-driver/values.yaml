@@ -86,11 +86,6 @@ csp:
 
   affinity: {}
 
-  # OpenShift only: set to "{ type: spc_t }" so the CSP container can write logs to the
-  # host-mounted /var/log so hpe-logcollector.sh can gather them (CON-3303). Leave empty
-  # on vanilla Kubernetes, which does not use OpenShift SCC/SELinux policy behavior.
-  seLinuxOptions: {}
-
   resources:
     limits:
       cpu: 2000m

@@ -83,12 +83,6 @@ spec:
       containers:
         - name: primera3par-csp
           image: {{ .Values.images.primera3parCSP | quote }}
-          {{- if .Values.csp.seLinuxOptions }}
-          # OpenShift only: lets the CSP write logs to host-mounted /var/log (CON-3303)
-          securityContext:
-            seLinuxOptions:
-{{ toYaml .Values.csp.seLinuxOptions | indent 14 }}
-          {{- end }}
           resources:
             {{- toYaml .Values.csp.resources | nindent 12 }}
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
@@ -126,9 +120,11 @@ spec:
             - name: log-dir
               mountPath: /var/log
       volumes:
+        # emptyDir (not hostPath): retains CSP logs across container crash-restarts,
+        # is auto-cleaned with the pod, and is writable under OpenShift SELinux (CON-3303, CON-2043).
         - name: log-dir
-          hostPath:
-            path: /var/log
+          emptyDir:
+            sizeLimit: 100Mi
       {{- if .Values.csp.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.csp.nodeSelector | indent 8 }}
