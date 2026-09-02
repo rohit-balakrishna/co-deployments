@@ -14,6 +14,7 @@ spec:
     protocol: TCP
   selector:
     app: primera3par-csp
+
 ---
 # Source: hpe-csi-driver/templates/primera-3par-csp.yaml
 ### Alletra9000 CSP Service ###
@@ -30,6 +31,7 @@ spec:
     protocol: TCP
   selector:
     app: primera3par-csp
+
 ---
 # Source: hpe-csi-driver/templates/primera-3par-csp.yaml
 ### Primera3par CSP Service ###
@@ -46,6 +48,8 @@ spec:
     protocol: TCP
   selector:
     app: primera3par-csp
+
+
 ---
 # Source: hpe-csi-driver/templates/primera-3par-csp.yaml
 ### CSP deployment ###
@@ -70,7 +74,7 @@ spec:
       priorityClassName: system-cluster-critical
       containers:
         - name: primera3par-csp
-          image: "quay.io/hpestorage/alletra-9000-primera-and-3par-csp:v3.2.0"
+          image: "quay.io/hpestorage/alletra-9000-primera-and-3par-csp:v3.3.0-beta1"
           resources:
             limits:
               cpu: 2000m
@@ -98,3 +102,4 @@ spec:
         - name: log-dir
           hostPath:
             path: /var/log
+

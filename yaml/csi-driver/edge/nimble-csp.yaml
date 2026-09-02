@@ -14,6 +14,7 @@ spec:
     protocol: TCP
   selector:
     app:  nimble-csp
+
 ---
 # Source: hpe-csi-driver/templates/nimble-csp.yaml
 ### Nimble CSP Service ###
@@ -30,6 +31,7 @@ spec:
     protocol: TCP
   selector:
     app: nimble-csp
+
 ---
 # Source: hpe-csi-driver/templates/nimble-csp.yaml
 ### CSP deployment ###
@@ -52,7 +54,7 @@ spec:
       priorityClassName: system-cluster-critical
       containers:
         - name: nimble-csp
-          image: "quay.io/hpestorage/alletra-6000-and-nimble-csp:v3.2.0"
+          image: "quay.io/hpestorage/alletra-6000-and-nimble-csp:v3.3.0-beta1"
           resources:
             limits:
               cpu: 2000m
@@ -71,3 +73,4 @@ spec:
         - name: log-dir
           hostPath:
             path: /var/log
+

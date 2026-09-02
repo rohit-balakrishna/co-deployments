@@ -14,6 +14,9 @@ spec:
     protocol: TCP
   selector:
     app: alletrastoragemp-x10000-nfs-csp
+
+
+
 ---
 # Source: hpe-csi-driver/templates/x10000-nfs-csp.yaml
 ### CSP deployment ###
@@ -36,7 +39,7 @@ spec:
       priorityClassName: system-cluster-critical
       containers:
         - name: alletrastoragemp-x10000-nfs-csp
-          image: "quay.io/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.0.0"
+          image: "quay.io/hpestorage/alletrastoragemp-x10000-nfs-csp:v1.1.0-beta"
           resources:
             limits:
               cpu: 2000m
@@ -57,3 +60,4 @@ spec:
         - name: log-dir
           hostPath:
             path: /var/log
+

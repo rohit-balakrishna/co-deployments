@@ -5,6 +5,8 @@ apiVersion: v1
 metadata:
   name: hpe-csi-controller-sa
   namespace: hpe-storage
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 apiVersion: v1
@@ -12,6 +14,8 @@ kind: ServiceAccount
 metadata:
   name: hpe-csi-node-sa
   namespace: hpe-storage
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ServiceAccount
@@ -19,6 +23,7 @@ apiVersion: v1
 metadata:
   name: hpe-csp-sa
   namespace: hpe-storage
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRole
@@ -74,6 +79,8 @@ rules:
   - apiGroups: ["storage.k8s.io"]
     resources: ["volumeattributesclasses"]
     verbs: ["list", "watch"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRole
@@ -99,6 +106,8 @@ rules:
   - apiGroups: ["storage.k8s.io"]
     resources: ["csinodes"]
     verbs: ["get", "list", "watch"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRole
@@ -139,6 +148,8 @@ rules:
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
     verbs: ["get", "list", "watch", "create", "delete", "update"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # Resizer must be able to work with PVCs, PVs, SCs.
@@ -165,6 +176,8 @@ rules:
   - apiGroups: [""]
     resources: ["events"]
     verbs: ["list", "watch", "create", "update", "patch"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # cluster role to support volumegroup
@@ -212,6 +225,8 @@ rules:
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
     verbs: ["get", "watch", "list", "delete", "update", "create"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # cluster role to support snapshotgroup
@@ -283,6 +298,8 @@ rules:
   - apiGroups: ["snapshot.storage.k8s.io"]
     resources: ["volumesnapshotclasses"]
     verbs: ["get", "list"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # mutator must be able to work with PVCs, PVs, SCs.
@@ -309,6 +326,8 @@ rules:
   - apiGroups: [""]
     resources: ["events"]
     verbs: ["list", "watch", "create", "update", "patch"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRole
@@ -367,6 +386,8 @@ rules:
   - apiGroups: ["apps"]
     resources: ["deployments"]
     verbs: ["create", "get", "list", "watch", "update", "delete", "patch"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -381,6 +402,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-provisioner-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -395,6 +418,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-attacher-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -409,6 +434,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-snapshotter-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -423,6 +450,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-external-resizer-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -437,6 +466,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-volumegroup-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -451,6 +482,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-snapshotgroup-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -466,6 +499,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-mutator-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: ClusterRoleBinding
@@ -486,6 +521,8 @@ roleRef:
   kind: ClusterRole
   name: hpe-csi-driver-role
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # Resizer must be able to work with end point in current namespace
@@ -499,6 +536,8 @@ rules:
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
     verbs: ["get", "watch", "list", "delete", "update", "create"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 # mutator must be able to work with end point in current namespace
@@ -512,6 +551,8 @@ rules:
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
     verbs: ["get", "watch", "list", "delete", "update", "create"]
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: RoleBinding
@@ -527,6 +568,8 @@ roleRef:
   kind: Role
   name: hpe-external-resizer-cfg
   apiGroup: rbac.authorization.k8s.io
+
+
 ---
 # Source: hpe-csi-driver/templates/hpe-csi-rbac.yaml
 kind: RoleBinding
@@ -542,3 +585,5 @@ roleRef:
   kind: Role
   name: hpe-csi-mutator-cfg
   apiGroup: rbac.authorization.k8s.io
+
+

@@ -194,11 +194,9 @@ spec:
       volumes:
         - name: socket-dir
           emptyDir: {}
-        # emptyDir (not hostPath): the controller is unprivileged and reads no host
-        # logs, so keep its log off the node filesystem (CON-2043); driver also logs to stdout.
         - name: log-dir
-          emptyDir:
-            sizeLimit: 100Mi
+          hostPath:
+            path: /var/log
         - name: k8s
           hostPath:
             path: /etc/kubernetes

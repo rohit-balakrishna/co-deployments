@@ -76,11 +76,9 @@ spec:
             - name: log-dir
               mountPath: /var/log
       volumes:
-        # emptyDir (not hostPath): retains CSP logs across container crash-restarts,
-        # is auto-cleaned with the pod, and is writable under OpenShift SELinux (CON-3303, CON-2043).
         - name: log-dir
-          emptyDir:
-            sizeLimit: 100Mi
+          hostPath:
+            path: /var/log
       {{- if .Values.csp.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.csp.nodeSelector | indent 8 }}
