@@ -1400,6 +1400,10 @@ spec:
                 description: Disables host deletion by the CSP when no volumes are
                   associated with the host
                 type: boolean
+              disableHostname:
+                description: Set to true to generate a unique hash for storage backends
+                  that have hostname length limitations
+                type: boolean
               disableNodeConfiguration:
                 description: DisableNodeConfiguration disables default configurations
                   performed by CSI plugin on node(s)
@@ -1489,6 +1493,10 @@ spec:
               logLevel:
                 description: Default logLevel for HPE CSI driver deployments
                 type: string
+              maxHostnameLength:
+                description: Max hostname length accepted by the storage backend when
+                  disableHostname is true
+                type: integer
               maxVolumesPerNode:
                 description: Max volumes per node
                 type: integer
@@ -2161,23 +2169,6 @@ spec:
                       type: object
                     type: array
                 type: object
-            required:
-            - disable
-            - disableNodeConformance
-            - disableNodeConfiguration
-            - disableNodeGetVolumeStats
-            - disableNodeMonitor
-            - disableHostDeletion
-            - maxVolumesPerNode
-            - disablePreInstallHooks
-            - imagePullPolicy
-            - images
-            - iscsi
-            - kubeletRootDir
-            - logLevel
-            - csp
-            - controller
-            - node
             type: object
           status:
             description: HpecsidriverStatus defines the observed state of HPECSIDriver

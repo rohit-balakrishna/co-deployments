@@ -1,7 +1,7 @@
 FROM scratch
 
 #Add these labels
-LABEL com.redhat.openshift.versions="v4.16-v4.21"
+LABEL com.redhat.openshift.versions="v4.17-v4.22"
 LABEL com.redhat.delivery.operator.bundle=true
 LABEL com.redhat.delivery.backport=true
 
@@ -12,7 +12,7 @@ LABEL operators.operatorframework.io.bundle.manifests.v1=manifests/
 LABEL operators.operatorframework.io.bundle.metadata.v1=metadata/
 LABEL operators.operatorframework.io.bundle.package.v1=hpe-csi-operator
 LABEL operators.operatorframework.io.bundle.channels.v1=stable
-LABEL operators.operatorframework.io.metrics.builder=operator-sdk-v1.42.2
+LABEL operators.operatorframework.io.metrics.builder=operator-sdk-v1.42.3
 LABEL operators.operatorframework.io.metrics.mediatype.v1=metrics+v1
 LABEL operators.operatorframework.io.metrics.project_layout=helm.sdk.operatorframework.io/v1
 
