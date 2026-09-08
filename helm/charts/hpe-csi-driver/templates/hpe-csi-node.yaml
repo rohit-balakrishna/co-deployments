@@ -80,6 +80,9 @@ spec:
             - name: DISABLE_NODE_MONITOR
               value: "true"
             {{- end }}
+            # GOMEMLIMIT set to 850MiB (~83% of this container's 1Gi memory limit) to run the Go GC before the hard limit (ESC-17696).
+            - name: GOMEMLIMIT
+              value: "850MiB"
             - name: MULTIPATH_UXSOCK_TIMEOUT
               value: "300000"
             - name: LOG_LEVEL
@@ -179,6 +182,9 @@ spec:
             # GOMEMLIMIT set to 850MiB (~83% of this container's 1Gi memory limit) to run the Go GC before the hard limit (ESC-17696).
             - name: GOMEMLIMIT
               value: "850MiB"
+            # Sizes the node driver's multipathd executor timeout above uxsock_timeout in /etc/multipath.conf; must match the init container.
+            - name: MULTIPATH_UXSOCK_TIMEOUT
+              value: "300000"
           imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
           securityContext:
             privileged: true
